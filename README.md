@@ -12,7 +12,7 @@ cd wrapper/bilateralfilter
 swig -python -c++ bilateralfilter.i
 python setup.py install
 ```
-More details please [here](https://github.com/meng-tang/rloss/tree/master/pytorch)
+More details please see [here](https://github.com/meng-tang/rloss/tree/master/pytorch)
 
 ## Download pretrained models to ./netWeights：
 Google: due to the coronavirus outbreak in China, I will upload models after I can enter my lab. But you can
