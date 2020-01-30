@@ -39,5 +39,5 @@ python train_from_cls_weight.py --IM_path /your/path/VOCdevkit/VOC2012/JPEGImage
 ```
 ## Inferencing：you need 1 GPU and the final model [RRM_final.pth]
 ```
-python tinfer_RRM.py --IM_path /your/path/VOCdevkit/VOC2012/JPEGImages
+python infer_RRM.py --IM_path /your/path/VOCdevkit/VOC2012/JPEGImages
 ```
