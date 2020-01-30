@@ -26,7 +26,7 @@ download “[ilsvrc-cls_rna-a1_cls1000_ep-0001.params]” and “[res38_cls.pth]
  
  [RRM_final.pth] is my final model. mIoU is about 63.7 on val set, which is a higher score than our paper (62.6)
 
-## Training：
+## Training:
 I suggest that it is better to use the 2nd method due to lower computing costs.
 ### Training from init model:
 you need 4 GPUs and the pretrained model [ilsvrc-cls_rna-a1_cls1000_ep-0001.params]:
