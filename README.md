@@ -21,7 +21,9 @@ download “[ilsvrc-cls_rna-a1_cls1000_ep-0001.params]” and “[res38_cls.pth]
 [BaiduYun](https://pan.baidu.com/s/15AwO6Jn9vQQtThE02QOefw)
 
  [ilsvrc-cls_rna-a1_cls1000_ep-0001.params] is an init pretained model.
- [res38_cls.pth] is a classification model on VOC 2012 dataset.
+ 
+ [res38_cls.pth] is a classification model pretrained on VOC 2012 dataset.
+ 
  [RRM_final.pth] is my final model. mIoU is about 63.7 on val set, which is a higher score than our paper (62.6)
 
 ## Training：
