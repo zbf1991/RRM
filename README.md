@@ -28,16 +28,19 @@ download “[ilsvrc-cls_rna-a1_cls1000_ep-0001.params]” and “[res38_cls.pth]
 
 ## Training：
 I suggest that it is better to use the 2nd method due to lower computing costs.
-### Training from init model, you need 4 GPUs and the pretrained model [ilsvrc-cls_rna-a1_cls1000_ep-0001.params]:
+### Training from init model:
+you need 4 GPUs and the pretrained model [ilsvrc-cls_rna-a1_cls1000_ep-0001.params]:
 ```
 python train_from_init.py --voc12_root /your/path/VOCdevkit/VOC2012
 ```
  
-### Training from a pretrained classification model, you only need 1 GPU and the pretrained model [res38_cls.pth]:
+### Training from a pretrained classification model:
+you only need 1 GPU and the pretrained model [res38_cls.pth]
 ```
 python train_from_cls_weight.py --IM_path /your/path/VOCdevkit/VOC2012/JPEGImages
 ```
-## Inferencing：you need 1 GPU and the final model [RRM_final.pth]:
+## Inferencing:
+you need 1 GPU and the final model [RRM_final.pth]:
 ```
 python infer_RRM.py --IM_path /your/path/VOCdevkit/VOC2012/JPEGImages
 ```
