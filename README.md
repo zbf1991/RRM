@@ -14,7 +14,7 @@ python setup.py install
 ```
 More details please see [here](https://github.com/meng-tang/rloss/tree/master/pytorch)
 
-## Download pretrained models to ./netWeights：
+## Download pretrained models to ./netWeights:
 Google: due to the coronavirus outbreak in China, I will upload models after I can enter my lab. But you can
 download “[ilsvrc-cls_rna-a1_cls1000_ep-0001.params]” and “[res38_cls.pth]” from [here](https://github.com/jiwoon-ahn/psa).
 
@@ -27,7 +27,7 @@ download “[ilsvrc-cls_rna-a1_cls1000_ep-0001.params]” and “[res38_cls.pth]
  [RRM_final.pth] is my final model. mIoU is about 63.7 on val set, which is a higher score than our paper (62.6)
 
 ## Training：
-I suggest you that it is better to use the 2nd method due to lower computing costs.
+I suggest that it is better to use the 2nd method due to lower computing costs.
 ### Training from init model, you need 4 GPUs and the pretrained model [ilsvrc-cls_rna-a1_cls1000_ep-0001.params]:
 ```
 python train_from_init.py --voc12_root /your/path/VOCdevkit/VOC2012
@@ -37,7 +37,7 @@ python train_from_init.py --voc12_root /your/path/VOCdevkit/VOC2012
 ```
 python train_from_cls_weight.py --IM_path /your/path/VOCdevkit/VOC2012/JPEGImages
 ```
-## Inferencing：you need 1 GPU and the final model [RRM_final.pth]
+## Inferencing：you need 1 GPU and the final model [RRM_final.pth]:
 ```
 python infer_RRM.py --IM_path /your/path/VOCdevkit/VOC2012/JPEGImages
 ```
