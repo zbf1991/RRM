@@ -1,7 +1,7 @@
 # Reliability Does Matter: An End-to-End Weakly Supervised Semantic Segmentation Approach
 AAAI 2020 (Spotlight).
 
-Due to the coronavirus outbreak in China, I cannot return to my lab, this project is uploadded throuthing the remote desktop.
+Due to the coronavirus outbreak in China, I cannot return to my lab, this project is uploaded throuthing the remote desktop.
 I will rewrite this README file and answer issuses after I can go back.
 
 This project is based on [Regularized loss](https://github.com/meng-tang/rloss) and [PSA](https://github.com/jiwoon-ahn/psa).
@@ -15,7 +15,7 @@ python setup.py install
 More details please [here](https://github.com/meng-tang/rloss/tree/master/pytorch)
 
 ## Download pretrained models to ./netWeights：
-Google: due to the coronavirus outbreak in China, I will upload models after I can enter my lab. But you can get
+Google: due to the coronavirus outbreak in China, I will upload models after I can enter my lab. But you can
 download “[ilsvrc-cls_rna-a1_cls1000_ep-0001.params]” and “[res38_cls.pth]” from [here](https://github.com/jiwoon-ahn/psa).
 
 [BaiduYun](https://pan.baidu.com/s/15AwO6Jn9vQQtThE02QOefw)
