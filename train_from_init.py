@@ -117,7 +117,7 @@ if __name__ == '__main__':
     ], lr=args.lr, weight_decay=args.wt_dec, max_step=max_step)
 
     if args.weights[-7:] == '.params':
-        assert args.network == "network.resnet38_cls_dataset_mGPU_cuda2"
+        assert args.network == "network.RRM"
         import network.resnet38d
         weights_dict = network.resnet38d.convert_mxnet_to_torch(args.weights)
     else:
