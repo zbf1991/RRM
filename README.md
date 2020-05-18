@@ -1,6 +1,6 @@
 # Reliability Does Matter: An End-to-End Weakly Supervised Semantic Segmentation Approach
 AAAI 2020 (Spotlight).
-I will update a extension version of this work, which achieved a better performance with some new desined architectures. I need some time to clean up my code and write a new paper for the extended work, and I will update it as soon as poossible.
+I will update an extension version of this work, which achieved a better performance with some new desined architectures. I need some time to clean up my code and write a new paper for the extended work, and I will update it as soon as poossible.
 
 This project is based on [Regularized loss](https://github.com/meng-tang/rloss) and [PSA](https://github.com/jiwoon-ahn/psa).
 
