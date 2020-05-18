@@ -1,8 +1,6 @@
 # Reliability Does Matter: An End-to-End Weakly Supervised Semantic Segmentation Approach
 AAAI 2020 (Spotlight).
-
-Due to the coronavirus outbreak in China, I cannot return to my lab, this project is uploaded throuthing the remote desktop.
-I will rewrite this README file and answer issuses after I can go back.
+I will update a extension version of this work, which achieved a better performance with some new desined architectures. I need some time to clean up my code and write a new paper for the extended work, and I will update it as soon as poossible.
 
 This project is based on [Regularized loss](https://github.com/meng-tang/rloss) and [PSA](https://github.com/jiwoon-ahn/psa).
 
@@ -24,7 +22,7 @@ download “[ilsvrc-cls_rna-a1_cls1000_ep-0001.params]” and “[res38_cls.pth]
  
  [res38_cls.pth] is a classification model pretrained on VOC 2012 dataset.
  
- [RRM_final.pth] is my final model. mIoU is about 63.7 on val set, which is a higher score than our paper (62.6)
+ [RRM_final.pth] is the final model. 
 
 ## Training:
 I suggest that it is better to use the 2nd method due to lower computing costs.
