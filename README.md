@@ -1,7 +1,7 @@
 # Reliability Does Matter: An End-to-End Weakly Supervised Semantic Segmentation Approach
 AAAI 2020 (Spotlight).
 
-The code of the new extended work now is available. In the further, I will try to merge these two work so that making the whole project is more elegant.
+The code of the new extended work now is available. In the further, I will try to merge these two works so that making the whole project is more elegant.
 
 Paper of the extended work will come soon.
 
