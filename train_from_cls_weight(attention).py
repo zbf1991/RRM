@@ -17,7 +17,7 @@ from tool.myTool import compute_joint_loss, compute_seg_label, compute_cam_up
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--gpu_id', type=str, default='0', help='GPU_id')
+    parser.add_argument('--gpu_id', type=str, default='0,1', help='GPU_id')
 
     parser.add_argument("--LISTpath", default="voc12/train_aug(id).txt", type=str)
     parser.add_argument("--IMpath", default="/home/zbf/dataset/VOCdevkit/VOC2012/JPEGImages", type=str)

@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac1b15a4-f44d-486a-a34b-bf6a02ba8d02" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tool/imutils.py" beforeDir="false" afterPath="$PROJECT_DIR$/tool/imutils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tool/myTool.py" beforeDir="false" afterPath="$PROJECT_DIR$/tool/myTool.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_from_init.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_from_init.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -135,12 +131,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="py" value="314" />
-          <entry key="txt" value="12" />
+          <entry key="txt" value="53" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="12" />
+          <entry key="PLAIN_TEXT" value="53" />
           <entry key="Python" value="314" />
         </counts>
       </usages-collector>
@@ -190,8 +186,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/train_from_cls_weight(attention).py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1360">
-              <caret line="25" column="49" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
+            <state relative-caret-position="388">
+              <caret line="117" column="48" lean-forward="true" selection-start-line="117" selection-start-column="48" selection-end-line="117" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -260,6 +256,7 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -683,7 +680,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586321088723</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="update the extension work">
+      <created>1589880304220</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1589880304220</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView">
@@ -698,12 +702,12 @@
   <component name="ToolWindowManager">
     <frame x="1920" y="-4" width="1680" height="1054" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4991453" visible="true" weight="0.24260712" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4991453" visible="true" weight="0.24260712" />
       <window_info id="Structure" order="1" sideWeight="0.50085473" side_tool="true" weight="0.2528978" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3290461" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49935567" visible="true" weight="0.36958936" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49935567" weight="0.36958936" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3954984" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -717,12 +721,23 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix some bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix some bug" />
+    <MESSAGE value="update the extension work" />
+    <option name="LAST_COMMIT_MESSAGE" value="update the extension work" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -911,8 +926,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/train_from_cls_weight(attention).py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1360">
-          <caret line="25" column="49" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
+        <state relative-caret-position="388">
+          <caret line="117" column="48" lean-forward="true" selection-start-line="117" selection-start-column="48" selection-end-line="117" selection-end-column="48" />
         </state>
       </provider>
     </entry>
