@@ -3,6 +3,8 @@ AAAI 2020 (Spotlight).
 
 The code of the new extended work now is available. In the further, I will try to merge these two work so that making the whole project is more elegant.
 
+Paper of the extended work will come soon.
+
 This project is based on [Regularized loss](https://github.com/meng-tang/rloss) and [PSA](https://github.com/jiwoon-ahn/psa).
 
 ## Before Running, build python extension module:
