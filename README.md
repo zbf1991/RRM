@@ -29,7 +29,7 @@ download “[ilsvrc-cls_rna-a1_cls1000_ep-0001.params]” and “[res38_cls.pth]
  
  [RRM(attention)_final.pth] is the final model of the new extended work (64.7 mIoU on Pascal Voc 2012 val set).
 
-## Training of New Extended Work:
+## Training of the New Extended Work:
 
 ### Training from init model:
 you need 4 GPUs and the pretrained model [ilsvrc-cls_rna-a1_cls1000_ep-0001.params]:
@@ -43,7 +43,7 @@ you only need 2 GPU and the pretrained model [res38_cls.pth]
 python train_from_cls_weight(attention).py --IM_path /your/path/VOCdevkit/VOC2012/JPEGImages
 ```
 
-## Training of AAAI Work:
+## Training of the AAAI Work:
 I suggest that it is better to use the 2nd method due to lower computing costs.
 ### Training from init model:
 you need 4 GPUs and the pretrained model [ilsvrc-cls_rna-a1_cls1000_ep-0001.params]:
@@ -61,7 +61,7 @@ you need 1 GPU and the final model [RRM(attention)_final.pth]:
 ```
 python infer_RRM.py --IM_path /your/path/VOCdevkit/VOC2012/JPEGImages
 ```
-## Inferencing of AAAI work:
+## Inferencing of the AAAI work:
 you need 1 GPU and the final model [RRM_final.pth]:
 ```
 python infer_RRM.py --IM_path /your/path/VOCdevkit/VOC2012/JPEGImages
