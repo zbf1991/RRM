@@ -226,3 +226,101 @@ def get_data_from_chunk_v2(chunk, args):
     ori_images = ori_images.transpose((3, 2, 0, 1))
     images = torch.from_numpy(images).float()
     return images, ori_images, labels, croppings
+
+
+def compute_cos(fts1, fts2):
+    fts1_norm2 = torch.norm(fts1, 2, 1).view(-1, 1)
+    fts2_norm2 = torch.norm(fts2, 2, 1).view(-1, 1)
+
+    fts_cos = torch.div(torch.mm(fts1, fts2.t()), torch.mm(fts1_norm2, fts2_norm2.t()) + 1e-7)
+
+    return fts_cos
+
+
+def compute_dis_no_batch(seg, seg_feature):
+    seg = torch.argmax(seg, dim=1, keepdim=True).view(seg.shape[0],1, -1)
+    seg_no_batch = seg.permute(0,2,1).clone().view(-1,1)
+
+    bg_label = torch.zeros_like(seg).float()
+
+    bg_label[seg == 0] = 1
+    bg_num = torch.sum(bg_label) + 1e-7
+
+    seg_feature = seg_feature.view(seg_feature.shape[0], seg_feature.shape[1], -1)
+
+    seg_feature_no_batch = seg_feature.permute(0, 2, 1).clone()
+    seg_feature_no_batch = seg_feature_no_batch.view(-1, seg_feature.shape[1])
+
+    seg_feature_bg = seg_feature * bg_label
+    bg_num_batch = torch.sum(bg_label, dim=2)+1e-7
+    seg_feature_bg_center = torch.sum(seg_feature_bg, dim=2) / bg_num_batch
+    pixel_dis = 0
+
+    bg_center_num = 0
+    for batch_i in range(seg_feature.shape[0]):
+        bg_num_batch_i = bg_num_batch[batch_i]
+        bg_pixel_dis = 1-compute_cos(seg_feature[batch_i].transpose(1,0), seg_feature_bg_center[batch_i].unsqueeze(dim=0))
+        if bg_num_batch_i>=1:
+            pixel_dis += (torch.sum(bg_pixel_dis * bg_label[batch_i].transpose(1,0), dim=0)/ bg_num_batch_i)
+        else:
+            pixel_dis += 2*torch.ones([1]).cuda()
+
+        bg_center_num+=1
+
+    fg_center_num=0
+    seg_feature_fg_center = torch.zeros([1, 1024])
+    batch_num = 0
+    for i in range(1, 21):
+        class_label = torch.zeros_like(seg_no_batch).float()
+        class_label[seg_no_batch == i] = 1
+        class_num = torch.sum(class_label) + 1e-7
+        batch_num += class_num
+        if class_num < 1:
+            continue
+        else:
+            seg_feature_class = seg_feature_no_batch * class_label
+            seg_feature_class_center = torch.sum(seg_feature_class, dim=0, keepdim=True) / class_num
+            fg_pixel_dis = 1-compute_cos(seg_feature_no_batch, seg_feature_class_center)
+            pixel_dis += (torch.sum(fg_pixel_dis*class_label,dim=0)/ class_num)
+            fg_center_num += 1
+            if fg_center_num == 1:
+                seg_feature_fg_center = seg_feature_class_center
+            else:
+                seg_feature_fg_center = torch.cat([seg_feature_fg_center, seg_feature_class_center], dim=0)
+
+    pixel_dis = pixel_dis / (fg_center_num+bg_center_num)
+
+    if batch_num >= 1 and torch.sum(bg_num) >= 1:
+
+        fg_fg_cos = 1 + compute_cos(seg_feature_fg_center, seg_feature_fg_center)
+        fg_bg_cos = 1 + compute_cos(seg_feature_fg_center, seg_feature_bg_center)
+
+        fg_fg_cos = fg_fg_cos - torch.diag(torch.diag(fg_fg_cos))
+        if fg_fg_cos.shape[0]>1:
+            fg_fg_loss = torch.sum(fg_fg_cos) / (fg_fg_cos.shape[0] * (fg_fg_cos.shape[1] - 1))
+
+        else:
+            fg_fg_loss = torch.zeros([1]).cuda()
+        fg_bg_loss = torch.sum(fg_bg_cos) / (fg_bg_cos.shape[0] * fg_bg_cos.shape[1])
+        dis_loss = 0.5 * fg_fg_loss.cuda() + 0.5 * fg_bg_loss.cuda()
+
+    elif torch.sum(bg_num) < 1:
+        fg_norm2 = torch.norm(seg_feature_fg_center, 2, 1).view(-1, 1)
+
+        fg_fg_cos = 1 + torch.div(torch.mm(seg_feature_fg_center, seg_feature_fg_center.t()),
+                                  torch.mm(fg_norm2, fg_norm2.t()) + 1e-7)
+
+        fg_fg_cos = fg_fg_cos - torch.diag(torch.diag(fg_fg_cos))
+
+        if fg_fg_cos.shape[0]>1:
+            fg_fg_loss = torch.sum(fg_fg_cos) / (fg_fg_cos.shape[0] * (fg_fg_cos.shape[1] - 1))
+
+        else:
+            fg_fg_loss = torch.zeros([1]).cuda()
+
+        dis_loss = 0.5 * fg_fg_loss + 1
+
+    else:
+        dis_loss = torch.zeros([1]).cuda()
+
+    return dis_loss.cuda()+pixel_dis.cuda()

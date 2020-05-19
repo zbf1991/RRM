@@ -11,7 +11,7 @@ import argparse
 import importlib
 import torch.nn.functional as F
 from DenseEnergyLoss import DenseEnergyLoss
-from tool.myTool import compute_seg_label, compute_joint_loss, compute_cam_up
+from tool.myTool import compute_seg_label, compute_joint_loss, compute_cam_up, compute_dis_no_batch
 os.environ["CUDA_VISIBLE_DEVICES"] = '0,1,2,3'
 
 
@@ -42,16 +42,16 @@ def validate(model, data_loader):
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--batch_size", default=4, type=int)
-    parser.add_argument("--max_epoches", default=24, type=int)
-    parser.add_argument("--network", default="network.RRM", type=str)
+    parser.add_argument("--batch_size", default=8, type=int)
+    parser.add_argument("--max_epoches", default=36, type=int)
+    parser.add_argument("--network", default="network.RRM(attention)", type=str)
     parser.add_argument("--lr", default=0.01, type=float)
     parser.add_argument("--num_workers", default=32, type=int)
     parser.add_argument("--wt_dec", default=5e-4, type=float)
     parser.add_argument("--weights", default='./netWeights/ilsvrc-cls_rna-a1_cls1000_ep-0001.params', type=str)
     parser.add_argument("--train_list", default="voc12/train_aug.txt", type=str)
     parser.add_argument("--val_list", default="voc12/val.txt", type=str)
-    parser.add_argument("--session_name", default="RRM_", type=str)
+    parser.add_argument("--session_name", default="RRM(attention)_", type=str)
     parser.add_argument("--crop_size", default=448, type=int)
     parser.add_argument("--class_numbers", default=20, type=int)
     parser.add_argument("--voc12_root", default='/home/zbf/dataset/VOCdevkit/VOC2012', type=str)
@@ -117,7 +117,7 @@ if __name__ == '__main__':
     ], lr=args.lr, weight_decay=args.wt_dec, max_step=max_step)
 
     if args.weights[-7:] == '.params':
-        assert args.network == "network.RRM"
+        assert args.network == "network.RRM(attention)"
         import network.resnet38d
         weights_dict = network.resnet38d.convert_mxnet_to_torch(args.weights)
     else:
@@ -141,13 +141,13 @@ if __name__ == '__main__':
             b, _, w, h = ori_images.shape
             c = args.class_numbers
             label = label.cuda(non_blocking=True)
-            if (optimizer.global_step - 1) < 0.5*optimizer.max_step:
-                x_f = model(images, require_seg=False, require_mcam=False)
+            if (optimizer.global_step - 1) < 0.3*optimizer.max_step:
+                x_f = model(images, require_seg=False, require_cam=False)
                 closs = F.multilabel_soft_margin_loss(x_f, label)
                 loss = closs
                 print('closs', closs.data)
             else:
-                x_f, cam, seg = model(images, require_seg=True, require_mcam=True)
+                x_f, cam, seg, seg_feature = model(images, require_seg=True, require_cam=True)
                 cam_up = compute_cam_up(cam, label, w, h, b)
                 seg_label = np.zeros((b, w, h))
                 cam_weight = np.zeros((b, w, h))
@@ -159,11 +159,13 @@ if __name__ == '__main__':
                     seg_label[i] = compute_seg_label(ori_img, cam_label, norm_cam)
 
                 closs = F.multilabel_soft_margin_loss(x_f, label)
+                BCD_loss = compute_dis_no_batch(seg, seg_feature)
 
-                celoss, dloss = compute_joint_loss(ori_images, seg[0], seg_label, croppings, critersion, DenseEnergyLosslayer)
+                celoss, dloss = compute_joint_loss(ori_images, seg, seg_label, croppings, critersion, DenseEnergyLosslayer)
 
-                loss = closs + celoss + dloss
-                print('closs: %.4f'% closs.item(),'celoss: %.4f'%celoss.item(), 'dloss: %.4f'%dloss.item())
+                loss = closs + celoss + dloss + BCD_loss
+                print('closs: %.4f'% closs.item(),'celoss: %.4f'%celoss.item(), 'dloss: %.4f'%dloss.item(),
+                      'BCDloss: %.4f' % BCD_loss.item())
 
             avg_meter.add({'loss': loss.item()})
 
