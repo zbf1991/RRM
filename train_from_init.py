@@ -42,7 +42,7 @@ def validate(model, data_loader):
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--batch_size", default=4, type=int)
+    parser.add_argument("--batch_size", default=8, type=int)
     parser.add_argument("--max_epoches", default=24, type=int)
     parser.add_argument("--network", default="network.RRM", type=str)
     parser.add_argument("--lr", default=0.01, type=float)
