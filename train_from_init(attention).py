@@ -43,7 +43,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--batch_size", default=8, type=int)
-    parser.add_argument("--max_epoches", default=36, type=int)
+    parser.add_argument("--max_epoches", default=48, type=int)
     parser.add_argument("--network", default="network.RRM(attention)", type=str)
     parser.add_argument("--lr", default=0.01, type=float)
     parser.add_argument("--num_workers", default=32, type=int)
@@ -141,7 +141,7 @@ if __name__ == '__main__':
             b, _, w, h = ori_images.shape
             c = args.class_numbers
             label = label.cuda(non_blocking=True)
-            if (optimizer.global_step - 1) < 0.3*optimizer.max_step:
+            if (optimizer.global_step - 1) < 0.5*optimizer.max_step:
                 x_f = model(images, require_seg=False, require_cam=False)
                 closs = F.multilabel_soft_margin_loss(x_f, label)
                 loss = closs
