@@ -40,7 +40,7 @@ python train_from_init(attention).py --voc12_root /your/path/VOCdevkit/VOC2012
 ### Training from a pretrained classification model:
 you only need 2 GPU and the pretrained model [res38_cls.pth]
 ```
-python train_from_cls_weight(attention).py --IM_path /your/path/VOCdevkit/VOC2012/JPEGImages
+python train_from_cls_weight(attention).py --IMpath /your/path/VOCdevkit/VOC2012/JPEGImages
 ```
 
 ## Training of the AAAI Work:
@@ -54,15 +54,15 @@ python train_from_init.py --voc12_root /your/path/VOCdevkit/VOC2012
 ### Training from a pretrained classification model:
 you only need 1 GPU and the pretrained model [res38_cls.pth]
 ```
-python train_from_cls_weight.py --IM_path /your/path/VOCdevkit/VOC2012/JPEGImages
+python train_from_cls_weight.py --IMpath /your/path/VOCdevkit/VOC2012/JPEGImages
 ```
 ## Inferencing of the extended work:
 you need 1 GPU and the final model [RRM(attention)_final.pth]:
 ```
-python infer_RRM.py --IM_path /your/path/VOCdevkit/VOC2012/JPEGImages
+python infer_RRM.py --IMpath /your/path/VOCdevkit/VOC2012/JPEGImages
 ```
 ## Inferencing of the AAAI work:
 you need 1 GPU and the final model [RRM_final.pth]:
 ```
-python infer_RRM.py --IM_path /your/path/VOCdevkit/VOC2012/JPEGImages
+python infer_RRM.py --IMpath /your/path/VOCdevkit/VOC2012/JPEGImages
 
